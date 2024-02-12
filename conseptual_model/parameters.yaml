@@ -1,0 +1,743 @@
+0:
+  data model:
+  - PA
+  original IDs:
+  - - 0
+  - - 0
+  question: What year were you born?
+  type: biology
+1:
+  data model:
+  - PA
+  original IDs:
+  - - 1
+  - - 1
+  question: What is your gender?
+  type: biology
+2:
+  data model:
+  - PA
+  - EF
+  original IDs:
+  - - 2
+    - 3
+  - - 3
+  question: industry
+  type: biology
+3:
+  data model:
+  - PA
+  - EF
+  - TMS
+  - OGP
+  original IDs:
+  - - 4
+    - 5
+  - - 4
+  question: current occupation?
+  type: biology
+4:
+  data model:
+  - EF
+  original IDs:
+  - - 6
+  - - 5
+  question: number of employees
+  type: biology
+5:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 107
+  question: Roughly how productive are the employees you manage, each hour, when they
+    work remotely?
+  type: productivity
+6:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 105
+  question: I find it easy to contact my employees when they work remotely
+  type: effect
+7:
+  data model:
+  - TMS
+  - OGP
+  original IDs:
+  - - 7
+  - - 95
+  question: Do you manage people?
+  type: biology
+8:
+  data model:
+  - PA
+  - EF
+  original IDs:
+  - - 8
+  - - 6
+  question: household
+  type: biology
+9:
+  data model:
+  - PA
+  - EF
+  original IDs:
+  - - 9
+  - - 2
+  question: length of current job
+  type: biology
+10:
+  data model:
+  - PA
+  original IDs:
+  - - 10
+  - - 7
+  question: Metro or Regional
+  type: biology
+11:
+  data model:
+  - RWF
+  original IDs:
+  - - 11
+    - 19
+  - - 10
+    - 8
+  question: how much of your time did you spend remote working?
+  type: experience
+12:
+  data model:
+  - TMS
+  - OGP
+  original IDs:
+  - - 12
+    - 20
+  - - 24
+  question: My organisation encouraged people to work remotely
+  type: top management support/organization policy
+13:
+  data model:
+  - TMS
+  - OGP
+  original IDs:
+  - - 13
+    - 21
+  - - 25
+  question: My organisation was well prepared for me to work remotely
+  type: top management support/organization policy
+14:
+  data model:
+  - RWF
+  original IDs:
+  - - 14
+    - 22
+  - - 26
+  question: It was common for people in my organisation to work remotely
+  type: acceptance
+15:
+  data model:
+  - RWF
+  original IDs:
+  - - 15
+    - 23
+  - - 27
+  question: It was easy to get permission to work remotely
+  type: acceptance
+16:
+  data model:
+  - INF
+  original IDs:
+  - - 16
+    - 24
+  - - 28
+  question: I could easily collaborate with colleagues when working remotely
+  type: team
+17:
+  data model:
+  - WP
+  original IDs:
+  - - 17
+    - 25
+  - []
+  question: I would recommend remote working to others
+  type: preference
+18:
+  data model:
+  - WP
+  original IDs:
+  - - 18
+    - 26
+    - 27
+  - - 9
+    - 11
+    - 12
+  question: How much of your time would you have preferred to work remotely?
+  type: preference
+19:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 104
+  question: Managing people remotely makes me more focused on results
+  type: effect
+20:
+  data model:
+  - TMS
+  original IDs:
+  - - 28
+  - - 33
+  question: My employer would encourage more remote working
+  type: top management support/organization policy
+21:
+  data model:
+  - TMS
+  original IDs:
+  - - 29
+  - - 34
+  question: My employer would make changes to support remote working
+  type: top management support/organization policy
+22:
+  data model:
+  - RWF
+  original IDs:
+  - - 30
+  - - 35
+  question: I would have more choice about whether I work remotely
+  type: acceptance
+23:
+  data model:
+  - EMP
+  original IDs:
+  - - 31
+  - - 106
+  question: "compare your productivity when you work remotely to when you work at\
+    \ your employer\u2019s workplace"
+  type: productivity
+24:
+  data model: []
+  original IDs:
+  - - 32
+    - 36
+  - - 36
+    - 41
+  question: how many hours would you spend preparing for work and commuting?
+  type: experience
+25:
+  data model:
+  - EMP
+  original IDs:
+  - - 33
+    - 37
+  - - 37
+    - 42
+  question: how many hours would you spend working?
+  type: experience
+26:
+  data model:
+  - EMS
+  original IDs:
+  - - 34
+    - 38
+  - - 39
+    - 44
+  question: how many hours would you spend doing personal and family time?
+  type: experience
+27:
+  data model:
+  - EMS
+  original IDs:
+  - - 35
+    - 39
+  - - 38
+    - 43
+  question: how many hours would you spend caring and domestic responsibilities?
+  type: experience
+28:
+  data model: []
+  original IDs:
+  - []
+  - - 40
+  question: how many hours would you spend sleeping?
+  type: experience
+29:
+  data model:
+  - INF
+  - EMS
+  - TMS
+  original IDs:
+  - - 40
+    - 41
+  - - 49
+    - 54
+    - 52
+    - 53
+    - 51
+    - 48
+  question: the most/least significant barrier of WFH - Connectivity (internet connection)
+    ; Feeling left out and/or isolated ; Poor management ; IT equipment (computer,
+    printer, etc.) ; Difficulty collaborating remotely ; Caring responsibilities
+  type: flexibility
+30:
+  data model:
+  - INF
+  - EMS
+  - TMS
+  original IDs:
+  - - 42
+    - 43
+  - - 49
+    - 54
+    - 52
+    - 56
+    - 59
+  question: the most/least significant barrier of WFH - Connectivity (internet connection)
+    ; Feeling left out and/or isolated ; Poor management ; Cyber security ; Lack of
+    motivation ; Lack of motivation
+  type: flexibility
+31:
+  data model:
+  - INF
+  - EMS
+  - TMS
+  - WPB
+  original IDs:
+  - - 44
+    - 45
+  - - 49
+    - 50
+    - 54
+    - 58
+  question: the most/least significant barrier of WFH - Connectivity (internet connection)
+    ; Feeling left out and/or isolated ; Poor management ; My organisation's software
+    and systems ; My workspace (e.g. suitable chair, lighting, noise levels, facilities)
+    ; I have tasks that can't be done remotely
+  type: flexibility
+32:
+  data model:
+  - INF
+  - EMS
+  - TMS
+  - WPB
+  original IDs:
+  - - 46
+    - 47
+    - 48
+    - 49
+  - - 49
+    - 54
+    - 62
+    - 61
+    - 60
+    - 53
+    - 51
+    - 48
+    - 56
+    - 59
+  question: the most/least significant barrier of WFH - Connectivity (internet connection)
+    ; Feeling left out and/or isolated ; Poor management ; Lack of remote working
+    skills ; My living situation (e.g. location, home size, who I live with) ; Management
+    discourages remote working
+  type: flexibility
+33:
+  data model:
+  - INF
+  - EMS
+  original IDs:
+  - - 50
+    - 51
+    - 52
+    - 53
+  - - 50
+    - 53
+    - 51
+    - 48
+    - 58
+    - 57
+    - 53
+    - 51
+    - 48
+    - 62
+    - 61
+    - 60
+  question: the most/least significant barrier of WFH - IT equipment (computer, printer,
+    etc.) ; Difficulty collaborating remotely ; Caring responsibilities ; Cyber security
+    ; Lack of motivation ; Lack of motivation
+  type: flexibility
+34:
+  data model:
+  - INF
+  - EMS
+  - WPB
+  original IDs:
+  - - 54
+    - 55
+    - 56
+    - 57
+  - - 50
+    - 56
+    - 59
+    - 58
+    - 57
+    - 56
+    - 59
+    - 62
+    - 61
+    - 60
+  question: the most/least significant barrier of WFH - IT equipment (computer, printer,
+    etc.) ; Difficulty collaborating remotely ; Caring responsibilities ; My organisation's
+    software and systems ; My workspace (e.g. suitable chair, lighting, noise levels,
+    facilities) ; I have tasks that can't be done remotely
+  type: flexibility
+35:
+  data model:
+  - INF
+  - EMS
+  - TMS
+  - WPB
+  original IDs:
+  - - 58
+    - 59
+  - - 50
+    - 58
+    - 57
+    - 62
+    - 61
+    - 60
+  question: the most significant barrier of WFH - IT equipment (computer, printer,
+    etc.) ; Difficulty collaborating remotely ; Caring responsibilities ; Lack of
+    remote working skills ; My living situation (e.g. location, home size, who I live
+    with) ; Management discourages remote working
+  type: flexibility
+36:
+  data model:
+  - EF
+  original IDs:
+  - []
+  - - 55
+  question: Have the following barriers to remote working improved or worsened for
+    you over the past 6 months?   - Extra costs
+  type: flexibility
+37:
+  data model: []
+  original IDs:
+  - []
+  - - 63
+  question: Have the following barriers to remote working improved or worsened for
+    you over the past 6 months?   - My health and safety when working remotely
+  type: flexibility
+38:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 60
+    - 61
+  - []
+  question: the best aspect of remote working for you - Managing my family responsibilities
+    ; My working relationships ; Preparing for work and commuting ; The number of
+    hours  I work ; My work-life balance ; My on-the-job learning opportunities
+  type: effect
+39:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 62
+    - 63
+  - []
+  question: the best aspect of remote working for you - Managing my family responsibilities
+    ; My working relationships ; Preparing for work and commuting ; Managing my personal
+    commitments ; My opportunities to socialise ; My mental wellbeing
+  type: effect
+40:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 64
+    - 65
+  - []
+  question: the best aspect of remote working for you - Managing my family responsibilities
+    ; My working relationships ; Preparing for work and commuting ; My daily expenses
+    ; My personal relationships ; My job satisfaction
+  type: effect
+41:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 66
+    - 67
+  - []
+  question: the best aspect of remote working for you - The number of hours  I work
+    ; My work-life balance ; My on-the-job learning opportunities ; Managing my personal
+    commitments ; My opportunities to socialise ; My mental wellbeing
+  type: effect
+42:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 68
+    - 69
+  - []
+  question: the best aspect of remote working for you - The number of hours  I work
+    ; My work-life balance ; My on-the-job learning opportunities ; My daily expenses
+    ; My personal relationships ; My job satisfaction
+  type: effect
+43:
+  data model:
+  - EMS
+  - EMP
+  original IDs:
+  - - 70
+    - 71
+  - []
+  question: the best aspect of remote working for you - Managing my personal commitments
+    ; My opportunities to socialise ; My mental wellbeing ; My daily expenses ; My
+    personal relationships ; My job satisfaction
+  type: effect
+44:
+  data model:
+  - OGP
+  original IDs:
+  - []
+  - - 13
+  question: Has your employer changed or updated their policy on remote work since
+    COVID-19?
+  type: top management support/organization policy
+45:
+  data model:
+  - RWF
+  original IDs:
+  - []
+  - - 14
+  question: "have you ever worked part of your day remotely, and part of it at your\
+    \ employer\u2019s workplace?"
+  type: experience
+46:
+  data model:
+  - WPF
+  original IDs:
+  - []
+  - - 15
+  question: "How often do you work this way(worked part of your day remotely, and\
+    \ part of it at your employer\u2019s workplace)?"
+  type: experience
+47:
+  data model:
+  - WP
+  original IDs:
+  - []
+  - - 16
+  question: How often would you like to work this way?
+  type: preference
+48:
+  data model:
+  - TMS
+  - OGP
+  original IDs:
+  - []
+  - - 17
+  question: "Does your employer have a policy that workers must be at the employer\u2019\
+    s workplace some of the time?"
+  type: top management support/organization policy
+49:
+  data model:
+  - TMS
+  - OGP
+  original IDs:
+  - []
+  - - 18
+  question: "How much of your work time does your employer\u2019s policy require you\
+    \ to be at their workplace?"
+  type: top management support/organization policy
+50:
+  data model:
+  - OGP
+  original IDs:
+  - []
+  - - 19
+    - 20
+    - 21
+    - 22
+  question: "your employer\u2019s policy on remote working"
+  type: top management support/organization policy
+51:
+  data model:
+  - RWF
+  original IDs:
+  - []
+  - - 29
+    - 30
+  question: remote working in the last 6 months
+  type: experience
+52:
+  data model:
+  - EMS
+  - EMP
+  - ORP
+  original IDs:
+  - []
+  - - 31
+  question: Do you think remote working is a positive or a negative for your employer?
+  type: acceptance
+53:
+  data model:
+  - TMS
+  original IDs:
+  - []
+  - - 32
+  question: Who is most supportive of remote working in your organisation?
+  type: top management support/organization policy
+54:
+  data model:
+  - WP
+  original IDs:
+  - []
+  - - 46
+  question: Imagine your employer offered you the option to work remotely whenever
+    you chose, in return for negotiating a pay cut that you both agree on.  Would
+    you be interested in negotiating?
+  type: preference
+55:
+  data model:
+  - WP
+  original IDs:
+  - []
+  - - 47
+  question: What is the biggest pay cut you would accept?   Please give your answer
+    as a percentage.
+  type: preference
+56:
+  data model:
+  - RWF
+  - WPB
+  - WPF
+  - WTF
+  - INF
+  original IDs:
+  - []
+  - - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+  question: "Think about when you worked at your employer\u2019s workplace and some\
+    \ of your colleagues were working remotely. What were the biggest/smallest barriers\
+    \ of working this way?"
+  type: flexibility
+57:
+  data model:
+  - EMS
+  original IDs:
+  - []
+  - - 92
+  question: On days when I work remotely I feel better
+  type: effect
+58:
+  data model:
+  - EMS
+  original IDs:
+  - []
+  - - 93
+  question: On days when I work remotely I am more active
+  type: effect
+59:
+  data model:
+  - EMS
+  original IDs:
+  - []
+  - - 94
+  question: I feel better on days when I see my colleagues in person
+  type: effect
+60:
+  data model:
+  - RWF
+  original IDs:
+  - []
+  - - 96
+  question: Do employees you manage ever work remotely?
+  type: acceptance
+61:
+  data model:
+  - TMS
+  original IDs:
+  - []
+  - - 97
+  question: I have discretion to offer or deny remote work to employees I manage
+  type: top management support/organization policy
+62:
+  data model:
+  - EMS
+  original IDs:
+  - []
+  - - 98
+  question: Offering remote work helps me retain employees
+  type: effect
+63:
+  data model:
+  - ORP
+  original IDs:
+  - []
+  - - 99
+  question: Offering remote work helps me to recruit employees
+  type: effect
+64:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 100
+  question: My team works well together when they work remotely
+  type: effect
+65:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 101
+  question: I find it easy to manage employees remotely (e.g. tasking and monitoring
+    progress)
+  type: effect
+66:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 102
+  question: I find it easy to manage poor performers remotely
+  type: effect
+67:
+  data model:
+  - EMP
+  original IDs:
+  - []
+  - - 103
+  question: I feel well-prepared to manage employees remotely
+  type: effect
