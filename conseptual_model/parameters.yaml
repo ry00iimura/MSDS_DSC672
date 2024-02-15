@@ -741,3 +741,24 @@
   - - 103
   question: I feel well-prepared to manage employees remotely
   type: effect
+68:
+  data model:
+  - PRF
+  original IDs:
+  - []
+  - - 64
+    - 65
+    - 66
+    - 67
+    - 70
+    - 71
+    - 78
+    - 79
+    - 82
+    - 83
+    - 86
+    - 87
+    - 88
+    - 89
+  question: What were the biggest barriers of working this way? - Lack of privacy
+  type: effect

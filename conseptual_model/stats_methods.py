@@ -3,212 +3,23 @@ from scipy.stats import chi2_contingency
 import numpy as np
 import pandas as pd
 import scipy as sp
-
-"""
- statistical tests
-"""
-
-def t_test(arr1,arr2,test_type,threshold = .05):
-    '''
-    Student T test 
-    '''
-    if test_type == 'student_t':
-        statistic, p = sp.stats.ttest_ind(arr1,arr2)
-
-    elif test_type == 'welch_t':
-        statistic, p = sp.stats.ttest_ind(arr1,arr2,equal_var = False)
-    
-    elif test_type == 'related':
-        statistic, p = sp.stats.ttest_rel(arr1,arr2)
-
-    if p <= threshold:
-        print('It can be correlated. p-value:{}'.format(p))
-        ttest_result = True
-    else:
-        print('The null hypothesis cannot be rejected.')
-        ttest_result = False
-
-    return [p, ttest_result]    
-
-
-def chi2(observed,threshold = .05):
-    chi2, p, dof, expected = chi2_contingency(observed)
-
-    if p <= threshold:
-        print('It can be correlated. p-value:{}'.format(p))
-        chi2_result = True
-    else:
-        print('The null hypothesis cannot be rejected.')
-        chi2_result = False
-
-    return [p, chi2_result]
-
-def shapiro(observed,threshold = .05):
-    s,p = sp.stats.shapiro(observed)
-
-    if p <= threshold:
-        print('The data can be said to normally distributed. p-value:{}'.format(p))
-        shapiro_result = True
-    else:
-        print('The null hypothesis cannot be rejected.')
-        shapiro_result = False
-
-    return [p, shapiro_result]
-
-def shapiro_all(arr_list,threshold):
-
-    bonferroni_correction = threshold / len(arr_list)
-
-    shapiro_p = []
-
-    for arr in arr_list:
-        shapiro_res = shapiro(arr,bonferroni_correction)
-
-        shapiro_p.append(shapiro_res)
-
-    true_ratio = np.array(shapiro_p)[:,1].sum() / len(np.array(shapiro_p)[:,1])
-
-    if true_ratio == 1:
-        shapiro_test_result = True
-    else:
-        shapiro_test_result = False
-
-    return shapiro_test_result
-
-def bartlett(threshold,*observed):
-
-    s,p = sp.stats.bartlett(*observed)
-
-    if p <= threshold:
-        print('The cannot be said that the samples are from the population with equal variance. p-value:{}'.format(p))
-        bartlett_result = False
-    else:
-        print('The can be said that the samples are from the population with equal variance. p-value:{}'.format(p))
-        bartlett_result = True
-
-    return [p, bartlett_result]    
-
-def one_way_ANOVA(threshold,*observed):
-
-    s , p = sp.stats.f_oneway(*observed)
-
-    if p <= threshold:
-        print('The can be said that two or more groups does not have the same population mean. p-value:{}'.format(p))
-        ANOVA_result = True
-    else:
-        print('The null hypothesis cannot be rejected.')
-        ANOVA_result = False
-
-    return [p, ANOVA_result]    
-
-def kruskal(threshold,*observed):
-
-    s , p = sp.stats.kruskal(*observed)
-
-    if p <= threshold:
-        print('The can be said that the population median of all of the groups are not equal. p-value:{}'.format(p))
-        kruskal_result = True
-    else:
-        print('The null hypothesis cannot be rejected.')
-        kruskal_result = False
-
-    return [p, kruskal_result] 
-
-"""
-correlation power computation
-"""
-
-def pearson(arr1,arr2):
-    corr , pvalue = sp.stats.pearsonr(arr1,arr2)
-    print('Pearson"s correlation :{0} p-value:{1}'.format(round(corr,3),round(pvalue,3)))
-    return corr, pvalue, 'Peason'
-
-def spearman(arr1,arr2):
-    corr , pvalue = sp.stats.spearmanr(arr1,arr2)
-    print('Spearman"s correlation:{0} p-value:{1}'.format(round(corr,3),round(pvalue,3)))
-    return corr, pvalue , 'Spearman'
-
-def cramers_v(x, y):
-    '''
-    Calc Cramer's V.
-
-    Parameters
-    ----------
-    x : {numpy.ndarray, pandas.Series}
-    y : {numpy.ndarray, pandas.Series}
-
-    returns corr, p-value(nan), 'Cramers V'
-    arr1 must be categorical variable
-    arr2 must be categorical variable
-
-    correlation ratio is often denoted with rc
-
-    if rc >= .5 then significantly strong correlation
-    if .25 <= rc < .5 then somewhat strong correlation
-    if .1 <= rc < .25 then weak correlation
-    else not correlated
-    '''
-
-    # cross tabluation
-    table = np.array(pd.crosstab(x, y))
-    
-    # measured variable
-    n = table.sum()
-    
-    # column-wise total
-    colsum = table.sum(axis=0)
-    
-    # row-wise total
-    rowsum = table.sum(axis=1)
-    
-    # expectation
-    expect = np.outer(rowsum, colsum) / n
-    
-    # chi2
-    chisq = np.sum((table - expect) ** 2 /expect)
-
-    # corr(cramer'V)
-    corr = np.sqrt(chisq / (n * (min(table.shape) -1)))
-    
-    return corr, np.NaN, 'Cramers V'
-
-def corr_ratio(arr1,arr2):
-    '''
-    returns corr, p-value(nan), 'correlation ratio'
-    arr1 must be categorical variables
-    arr2 must be numeric variables
-
-    correlation ratio is often denoted with mu_square(m2)
-
-    if m2 >= .5 then significantly strong correlation
-    if .25 <= m2 < .5 then somewhat correlation
-    if .1 <= m2 < .25 then weak correlation
-    else not correlated
-    '''
-    # compute total variance
-    all_var = ((arr2 - arr2.mean()) ** 2).sum()
-
-    # compute intraclass variance
-    intra_class_var = sum([((arr2[arr1 == i] - arr2[ arr1== i].mean()) ** 2).sum() for i in np.unique(arr1)])
-
-    # compute interclass variance
-    inter_class_var = all_var - intra_class_var
-
-    # compute correlation ratio
-    corr = inter_class_var / all_var
-    print('compute correlation ratio:{}'.format(round(corr,3)))
-    return corr, np.NaN, 'correlation ratio'
-
-
-
-"""
-is_* functions
-"""
+import avg_diff_stats_methods as ad
+import crosstab_stats_methods as crs
+import quantified_stats_methods as qs
+import correlation_stats_methods as cs
 
 def istype(arr):
-    '''
-    return if arr is 'quantified' or 'qualified
-    '''
+    """
+    Determines if an array is quantified (numeric) or qualified (categorical).
+    
+    Parameters:
+    arr : array_like
+        The array to check.
+
+    Returns:Pea
+    str
+        'quantified' if the array is numeric, 'qualified' if categorical, and 'unknown' otherwise.
+    """
     if arr.dtype in [np.int8,np.int16,np.int32,np.int64,np.uint8,np.uint16,np.uint32,np.uint64,np.float16,np.float32,np.float64]:
         return 'quantified'
 
@@ -220,38 +31,39 @@ def istype(arr):
     
 
 def isscale(arr,likert_scale):
-    '''
-    return if arr is 'rank scale' or 'nominal scale'
-    '''
+    """
+    Determines if an array is a 'rank scale' or 'nominal scale' based on a given Likert scale.
+    
+    Parameters:
+    arr : array_like
+        The array to check.
+    likert_scale : list
+        A list of values representing the Likert scale.
 
+    Returns:
+    str
+        'rank scale' if the array matches the Likert scale, 'nominal scale' otherwise.
+    """
     if len(set(arr) - set(likert_scale)) == 0:
         return 'rank scale'
     else:
         return 'nominal scale'
 
 
-def crosstab_chi2(arr1,arr2,threshold,**kwargs):
-    
-    arrays = {}
-
-    iter = 1
-
-    for arr in [arr1,arr2]:
-        arr_copy = arr.copy()
-        arr_filled_value = arr_copy.value_counts().idxmax()
-        arr_new = arr_copy.fillna(arr_filled_value)
-
-        arrays[iter] = arr_new
-
-        iter += 1
-
-    observed = pd.crosstab(arrays[1],arrays[2],**kwargs)
-    observed_filled = observed.fillna(0)
-
-    return chi2(observed_filled,threshold)
-    
-
 def which_test(arr1,arr2):
+    """
+    Decides which statistical test is appropriate based on the types of two arrays.
+    
+    Parameters:
+    arr1 : array_like
+        The first array.
+    arr2 : array_like
+        The second array.
+
+    Returns:
+    tuple
+        A tuple containing the names of the appropriate test and data handling method.
+    """
     
     types = tuple(istype(arr) for arr in [arr1,arr2])
 
@@ -273,6 +85,21 @@ def which_test(arr1,arr2):
     
 
 def which_corr(arr1,arr2,likert_scale):
+    """
+    Decides which correlation measure is appropriate based on the types and scales of two arrays.
+    
+    Parameters:
+    arr1 : array_like
+        The first array.
+    arr2 : array_like
+        The second array.
+    likert_scale : list
+        A list of values representing the Likert scale.
+
+    Returns:
+    str
+        The name of the appropriate correlation measure.
+    """
     types = tuple(istype(arr) for arr in [arr1,arr2])
 
     if types == tuple(['qualified','qualified']):
@@ -323,54 +150,78 @@ def which_corr(arr1,arr2,likert_scale):
     
 
 def main_corr(arr1,arr2,likert_scale):
+    """
+    Determines and executes the appropriate correlation measure for two arrays.
+    
+    Parameters:
+    arr1 : array_like
+        The first array.
+    arr2 : array_like
+        The second array.
+    likert_scale : list
+        A list of values representing the Likert scale.
+
+    Returns:
+    Various
+        The result of the correlation measure applied.
+    """
 
     corr_type = which_corr(arr1,arr2,likert_scale)
 
     if corr_type == 'spearman arr1':
 
-        return spearman(
+        return cs.spearman(
             arr1.replace(likert_scale).fillna(0),
             arr2.fillna(arr2.value_counts().index[0])
             )
 
     elif corr_type == 'spearman arr2':
 
-        return spearman(
+        return cs.spearman(
             arr1.fillna(arr1.value_counts().index[0]),
             arr2.replace(likert_scale).fillna(0)
             )
 
     elif corr_type == 'spearman arr1,arr2':
 
-        return spearman(
+        return cs.spearman(
             arr1.replace(likert_scale).fillna(0),
             arr2.replace(likert_scale).fillna(0)
             )
 
     elif corr_type =='pearson':
 
-        return pearson(
+        return cs.pearson(
             arr1.fillna(np.nanmean(arr1)),
             arr2.fillna(np.nanmean(arr2))
             )
 
     elif corr_type =='cramers v':
 
-        return cramers_v(arr1,arr2)
+        return cs.cramers_v(arr1,arr2)
 
     elif corr_type =='correlation ratio arr1':
 
-        return corr_ratio(arr1,arr2)
+        return cs.corr_ratio(arr1,arr2)
 
     else: # correlation ratio arr2
 
-        return corr_ratio(arr2,arr1)
+        return cs.corr_ratio(arr2,arr1)
     
-def array_split(qualified_val,quantified_val):
+def array_split(qualified_val,quantified_val,qualified_val_filled,quantified_val_filled):
+    """
+    Splits an array into sub-arrays based on unique values of a qualified variable.
+    
+    Parameters:
+    qualified_val : array_like
+        The categorical (qualified) variable to group by.
+    quantified_val : array_like
+        The numeric (quantified) variable to split.
 
-    qualified_val_filled = qualified_val.value_counts().idxmax()
-    quantified_val_filled = quantified_val.mean()
-
+    Returns:
+    list
+        A list of arrays, each representing a subset of quantified values corresponding to a unique qualified value.
+    """
     target_qid_two_arrs_df_filled = pd.concat([
         qualified_val.fillna(qualified_val_filled),
         quantified_val.fillna(quantified_val_filled)
@@ -384,38 +235,26 @@ def array_split(qualified_val,quantified_val):
     return arr_list
     
 
-def avg_diff_test(threshold,*observed):
+def main(q_comb,target_qids_dfs,years,threshold, likert_scale,**kwargs):
+    """
+    Conducts statistical tests and correlation measures on combinations of questions for given years.
+    
+    Parameters:
+    q_comb : list
+        A list of question combinations to analyze.
+    target_qids_dfs : dict
+        A dictionary containing data frames for different years.
+    years : str
+        The year to analyze.
+    threshold : float
+        The significance level for statistical tests.
+    likert_scale : list
+        A list of values representing the Likert scale.
 
-    shapiro_test_result = shapiro_all(observed,threshold)
-
-    if shapiro_test_result == True:
-
-        bartlett_test_result = bartlett(threshold,*observed)
-
-        if bartlett_test_result == True:
-
-            all_test_result = one_way_ANOVA(threshold, **observed)
-
-        else:
-
-            kruskal_test_result = kruskal(threshold,*observed)
-
-    else:
-
-        all_test_result = kruskal(threshold,*observed)
-
-    if all_test_result == True:
-
-        print('The variables can be correlated')
-
-    else:
-
-        print('The variables would not be correlated')
-
-    return all_test_result
-
-
-def main(q_comb,target_qids_dfs,years,threshold, likert_scale):
+    Returns:
+    list
+        A list containing the results of the statistical tests and correlation measures for each question combination.
+    """
 
     result_list = []
 
@@ -429,20 +268,79 @@ def main(q_comb,target_qids_dfs,years,threshold, likert_scale):
         pattern_res = which_test(arr1,arr2)
 
         if pattern_res == ('chi2','crosstab'):
-            test_result = crosstab_chi2(arr1,arr2, threshold, values = target_qid_two_arrs_df.loc[:,id], aggfunc = 'nunique') # [p,chi2_result]
+
+            qualified_val_filled1 = fillna_value(arr1,qualified_fill_type = kwargs.get('qualified_fill_type'))
+            qualified_val_filled2 = fillna_value(arr2,qualified_fill_type = kwargs.get('qualified_fill_type'))
+
+            arr1_filled = arr1.fillna(qualified_val_filled1)
+            arr2_filled = arr2.fillna(qualified_val_filled2)
+
+            test_result = crs.crosstab_chi2(arr1_filled,arr2_filled, threshold, values = target_qid_two_arrs_df.loc[:,id], aggfunc = 'nunique') # [p,chi2_result]
 
         elif pattern_res == ('avg diff test','tab on arr1'):
-            arr_list = array_split(arr1,arr2)
-            test_result = avg_diff_test(threshold,*arr_list)
+
+            qualified_val_filled = fillna_value(arr1,qualified_fill_type = kwargs.get('qualified_fill_type'))
+            quantified_val_filled = fillna_value(arr2,quantified_fill_type = kwargs.get('quantified_fill_type'))
+            
+            arr_list = array_split(arr1,arr2,qualified_val_filled,quantified_val_filled)
+            test_result = ad.avg_diff_test(threshold,*arr_list)
 
         elif pattern_res == ('avg diff test','tab on arr2'):
-            arr_list = array_split(arr2,arr1)
-            test_result = avg_diff_test(threshold,*arr_list)
+
+            qualified_val_filled = fillna_value(arr2,qualified_fill_type = kwargs.get('qualified_fill_type'))
+            quantified_val_filled = fillna_value(arr1,quantified_fill_type = kwargs.get('quantified_fill_type'))
+
+            arr_list = array_split(arr2,arr1,qualified_val_filled,quantified_val_filled)
+            test_result = ad.avg_diff_test(threshold,*arr_list)
         else:
-            test_result = t_test(arr1,arr2,'welch_t')
+
+            quantified_val_filled1 = fillna_value(arr1,quantified_fill_type = kwargs.get('quantified_fill_type'))
+            quantified_val_filled2 = fillna_value(arr2,quantified_fill_type = kwargs.get('quantified_fill_type'))
+
+            arr1_filled = arr1.fillna(quantified_val_filled1)
+            arr2_filled = arr2.fillna(quantified_val_filled2)
+
+            test_result = qs.t_test(arr1,arr2,'welch_t')
 
         corr_result = main_corr(arr1,arr2,likert_scale)
 
         result_list.append(list(comb_idx) + test_result + list(corr_result))
 
     return result_list
+
+
+def fillna_value(arr,**kwargs):
+
+    if kwargs.get('qualified_fill_type') == 'idxmax':
+
+        filled_val = arr.value_counts().idxmax()
+
+    elif kwargs.get('qualified_fill_type') == 'empty':
+
+        filled_val = ''
+
+    elif kwargs.get('qualified_fill_type') == 'custom':
+
+        filled_val = kwargs.get('filled_val')
+
+    elif kwargs.get('quantified_fill_type') == 'mean':
+
+        filled_val = arr.mean()
+
+    elif kwargs.get('quantified_fill_type') =='median':
+
+        filled_val = arr.median()
+
+    elif kwargs.get('quantified_fill_type') == 'mode':
+
+        filled_val = arr.mode()
+
+    elif kwargs.get('quantified_fill_type') == 'zero':
+
+        filled_val = 0
+
+    elif kwargs.get('quantified_fill_type') == 'custom':
+
+        filled_val = kwargs.get('filled_val')
+
+    return filled_val
