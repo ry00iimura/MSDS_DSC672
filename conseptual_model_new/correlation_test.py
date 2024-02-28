@@ -1,3 +1,9 @@
+"""
+Group 4
+
+Ryosuke Iimura, DePaul University, School of Computing, RIIMURA@depaul.edu 
+"""
+
 # load libraries
 from scipy.stats import chi2_contingency
 import numpy as np

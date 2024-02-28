@@ -1,3 +1,9 @@
+"""
+Group 4
+
+Ryosuke Iimura, DePaul University, School of Computing, RIIMURA@depaul.edu 
+"""
+
 # load libraries
 import correlation_test as ct
 import correlation as cor

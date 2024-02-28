@@ -1,3 +1,9 @@
+"""
+Group 4
+
+Ryosuke Iimura, DePaul University, School of Computing, RIIMURA@depaul.edu 
+"""
+
 # load the libraries
 import itertools
 import pandas as pd
@@ -6,6 +12,8 @@ import config_operation as co
 import a_data_process as a
 import b_stats_approach as b
 import c_viz as c
+from langchain_community.vectorstores import FAISS,Chroma
+import d_chatgpt as d
 
 
 # parameters
@@ -14,6 +22,8 @@ ym = co.YamlManager('parameters.yaml')
 questions = ym.read_yaml()
 ym2 = co.YamlManager('scales.yaml')
 likert_scale = ym2.read_yaml()
+threshold = d.threshold
+
 
 
 # read the dataset
@@ -180,3 +190,14 @@ class main(a.Q):
 
         return main_result
     
+def chatgpt(pdf_path,query,threshold):
+    ex = d.WfhExpert()
+    ex.auth_api_key()
+    ex.ocr(pdf_path)
+    ex.indexing(Chroma)
+    res1 = ex.chat_query(query)
+    ex.retriever(threshold)
+    ex.prompt_engineer()
+    ex.retrievalQA()
+    res2 = ex.chat_query_retrievalQA(query)
+    return res1, res2

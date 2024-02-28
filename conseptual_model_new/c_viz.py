@@ -1,3 +1,9 @@
+"""
+Group 4
+
+Ryosuke Iimura, DePaul University, School of Computing, RIIMURA@depaul.edu 
+"""
+
 # load libraries
 import matplotlib.pyplot as plt
 import seaborn as sns

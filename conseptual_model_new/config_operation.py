@@ -1,3 +1,9 @@
+"""
+Group 4
+
+Ryosuke Iimura, DePaul University, School of Computing, RIIMURA@depaul.edu 
+"""
+
 import yaml
 import os
 
@@ -6,37 +12,36 @@ class YamlManager:
         self.filename = filename
 
     def write_yaml(self, data):
-        """YAMLファイルへの書き出し"""
+        """write to YAML file"""
         with open(self.filename, 'w') as file:
             yaml.dump(data, file)
     
     def append_yaml(self, data):
-        """YAMLファイルへの追記"""
+        """append data into a YAML file"""
         existing_data = self.read_yaml()
         existing_data.update(data)
         self.write_yaml(existing_data)
     
     def update_yaml(self, key, value):
-        """YAMLファイルの内容を修正"""
+        """fix contents in a YAML file"""
         data = self.read_yaml()
         data[key] = value
         self.write_yaml(data)
     
     def delete_from_yaml(self, key):
-        """YAMLファイルから特定のキーを削除"""
+        """remote a key from a YAML file"""
         data = self.read_yaml()
         if key in data:
             del data[key]
             self.write_yaml(data)
     
     def read_yaml(self):
-        """YAMLファイルの読み込み"""
+        """read from a YAML file"""
         if not os.path.exists(self.filename):
             return {}
         with open(self.filename, 'r') as file:
             return yaml.safe_load(file) or {}
 
-# # 使用例
 if __name__ == '__main__':
     yaml_manager = YamlManager('sample.yaml')
     data = {'key1': 'value1', 'key2': 'value2'}
